@@ -1,21 +1,38 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "My API",
-    "description": "My API description.",
+    "title": "Todo CRUD API",
+    "description": "API for managing todos.",
     "version": "1.0.0"
   },
   "paths": {
     "/api/v1/todos": {
-      "get": {
-        "operationId": "getTodos",
+      "post": {
+        "operationId": "createTodo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateTodoRequestBody" }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": "Response for status 200",
+          "201": {
+            "description": "Response for status 201",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetTodos200ResponseBody"
+                  "$ref": "#/components/schemas/CreateTodo201ResponseBody"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response for status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTodo401ResponseBody"
                 }
               }
             }
@@ -30,35 +47,15 @@
           }
         }
       },
-      "delete": {
-        "operationId": "deleteTodo",
+      "get": {
+        "operationId": "getTodos",
         "responses": {
           "200": {
             "description": "Response for status 200",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteTodo200ResponseBody"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Response for status 401",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteTodo401ResponseBody"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Response for status 404",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteTodo404ResponseBody"
+                  "$ref": "#/components/schemas/GetTodos200ResponseBody"
                 }
               }
             }
@@ -123,22 +120,22 @@
           }
         }
       },
-      "post": {
-        "operationId": "createTodo",
+      "delete": {
+        "operationId": "deleteTodo",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/CreateTodoRequestBody" }
+              "schema": { "$ref": "#/components/schemas/DeleteTodoRequestBody" }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Response for status 201",
+          "200": {
+            "description": "Response for status 200",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateTodo201ResponseBody"
+                  "$ref": "#/components/schemas/DeleteTodo200ResponseBody"
                 }
               }
             }
@@ -148,7 +145,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateTodo401ResponseBody"
+                  "$ref": "#/components/schemas/DeleteTodo401ResponseBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response for status 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTodo404ResponseBody"
                 }
               }
             }
@@ -175,21 +182,15 @@
         "required": ["name"],
         "additionalProperties": false
       },
-      "DeleteTodo200ResponseBody": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "number" },
-            "name": { "type": "string" },
-            "completed": { "type": "boolean" }
-          },
-          "required": ["id", "name", "completed"],
-          "additionalProperties": false
-        }
-      },
+      "DeleteTodo200ResponseBody": { "type": "string" },
       "DeleteTodo401ResponseBody": { "type": "string" },
       "DeleteTodo404ResponseBody": { "type": "string" },
+      "DeleteTodoRequestBody": {
+        "type": "object",
+        "properties": { "id": { "type": "number" } },
+        "required": ["id"],
+        "additionalProperties": false
+      },
       "GetTodos200ResponseBody": {
         "type": "array",
         "items": {
@@ -208,29 +209,16 @@
         "properties": { "message": { "type": "string" } },
         "additionalProperties": false
       },
-      "UpdateTodo200ResponseBody": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "number" },
-            "name": { "type": "string" },
-            "completed": { "type": "boolean" }
-          },
-          "required": ["id", "name", "completed"],
-          "additionalProperties": false
-        }
-      },
+      "UpdateTodo200ResponseBody": { "type": "string" },
       "UpdateTodo401ResponseBody": { "type": "string" },
       "UpdateTodo404ResponseBody": { "type": "string" },
       "UpdateTodoRequestBody": {
         "type": "object",
         "properties": {
           "id": { "type": "number" },
-          "name": { "type": "string" },
           "completed": { "type": "boolean" }
         },
-        "required": ["id", "name", "completed"],
+        "required": ["id", "completed"],
         "additionalProperties": false
       }
     }

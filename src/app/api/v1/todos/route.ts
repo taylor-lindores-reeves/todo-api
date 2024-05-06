@@ -1,7 +1,6 @@
 import { TypedNextResponse, route, routeOperation } from "next-rest-framework";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
-
-// export const runtime = 'edge'; // Edge runtime is supported.
 
 const MOCK_TODOS = [
 	{
@@ -46,7 +45,8 @@ export const { GET, POST, DELETE, PUT } = route({
 			},
 		])
 		.middleware((req) => {
-			if (req.headers.get("x-authorization") !== "secret") {
+			const requestHeaders = new Headers(req.headers);
+			if (requestHeaders.get("x-authorization") !== "secret") {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
@@ -60,6 +60,8 @@ export const { GET, POST, DELETE, PUT } = route({
 				name,
 				completed: false,
 			});
+
+			revalidatePath("/");
 
 			return TypedNextResponse.json(`New TODO created: ${name}`, {
 				status: 201,
@@ -112,7 +114,8 @@ export const { GET, POST, DELETE, PUT } = route({
 			},
 		])
 		.middleware((req) => {
-			if (req.headers.get("x-authorization") !== "secret") {
+			const requestHeaders = new Headers(req.headers);
+			if (requestHeaders.get("x-authorization") !== "secret") {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
@@ -171,7 +174,8 @@ export const { GET, POST, DELETE, PUT } = route({
 			},
 		])
 		.middleware((req) => {
-			if (req.headers.get("x-authorization") !== "secret") {
+			const requestHeaders = new Headers(req.headers);
+			if (requestHeaders.get("x-authorization") !== "secret") {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
@@ -191,6 +195,8 @@ export const { GET, POST, DELETE, PUT } = route({
 			const { name } = MOCK_TODOS[todoIndex];
 
 			MOCK_TODOS.splice(todoIndex, 1);
+
+			revalidatePath("/");
 
 			return TypedNextResponse.json(`TODO deleted: ${name}`, {
 				status: 200,

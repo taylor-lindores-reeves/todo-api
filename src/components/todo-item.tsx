@@ -8,8 +8,6 @@ import { updateTodo } from '@todo/lib/update-todo';
 import { useRouter } from "next/navigation";
 import type * as React from 'react';
 
-
-
 export function TodoItem({ todo }: { todo: Todo; }) {
   const router = useRouter();
   const onChange = async (checked: boolean) => {

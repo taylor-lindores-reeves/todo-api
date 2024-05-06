@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate": "NODE_OPTIONS='--import=tsx' next-rest-framework generate",
+    "postinstall": "NODE_OPTIONS='--import=tsx' next-rest-framework generate",
     "validate": "NODE_OPTIONS='--import=tsx' next-rest-framework validate"
   },
   "dependencies": {

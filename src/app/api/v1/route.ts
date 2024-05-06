@@ -1,7 +1,6 @@
 import { docsRoute } from "next-rest-framework";
 
-export const runtime = "edge"; // Edge runtime is supported.
-
+export const dynamic = "force-dynamic";
 export const { GET } = docsRoute({
 	// deniedPaths: [...] // Ignore endpoints from the generated OpenAPI spec.
 	// allowedPaths: [...], // Explicitly set which endpoints to include in the generated OpenAPI spec.

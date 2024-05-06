@@ -10,10 +10,12 @@ export function TodoList({ todos }: { todos: Todo[]; }) {
   const router = useRouter();
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    const target = event.target as typeof event.target & {
-      name: { value: string; };
-    };
-    await createTodo(target.name.value);
+    const form = event.currentTarget; // Get the form element from the event
+    const input = form.elements.namedItem('name') as HTMLInputElement; // Access the input directly if needed
+
+    await createTodo(input.value);
+
+    form.reset();
     router.refresh();
   };
 
