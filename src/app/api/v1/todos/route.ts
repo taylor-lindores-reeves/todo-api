@@ -1,14 +1,7 @@
+import { env } from "@todo/env.mjs";
 import { TypedNextResponse, route, routeOperation } from "next-rest-framework";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-
-const MOCK_TODOS = [
-	{
-		id: 1,
-		name: "TODO 1",
-		completed: false,
-	},
-];
 
 const todoSchema = z.object({
 	id: z.number(),
@@ -17,6 +10,8 @@ const todoSchema = z.object({
 });
 
 export type Todo = z.infer<typeof todoSchema>;
+
+const MOCK_TODOS: Todo[] = [];
 
 /* !------- CRUD operations for TODO -------! */
 // API endpoint: /api/v1/todos
@@ -46,7 +41,7 @@ export const { GET, POST, DELETE, PUT } = route({
 		])
 		.middleware((req) => {
 			const requestHeaders = new Headers(req.headers);
-			if (requestHeaders.get("x-authorization") !== "secret") {
+			if (requestHeaders.get("x-authorization") !== env.X_AUTH_TOKEN) {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
@@ -115,7 +110,7 @@ export const { GET, POST, DELETE, PUT } = route({
 		])
 		.middleware((req) => {
 			const requestHeaders = new Headers(req.headers);
-			if (requestHeaders.get("x-authorization") !== "secret") {
+			if (requestHeaders.get("x-authorization") !== env.X_AUTH_TOKEN) {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
@@ -175,7 +170,7 @@ export const { GET, POST, DELETE, PUT } = route({
 		])
 		.middleware((req) => {
 			const requestHeaders = new Headers(req.headers);
-			if (requestHeaders.get("x-authorization") !== "secret") {
+			if (requestHeaders.get("x-authorization") !== env.X_AUTH_TOKEN) {
 				return TypedNextResponse.json("Unauthorized", {
 					status: 401,
 				});
