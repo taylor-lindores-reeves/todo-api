@@ -1,7 +1,7 @@
 
 # Todo List API with NextJS
 
-This project is a tutorial for creating a CRUD API for a simple todo list application using NextJS. It demonstrates setting up a NextJS project, defining API routes, and documenting these APIs using modern technologies. You can use the application by visiting [here](https://todo-api-one-tan.vercel.app/todo).
+This project is a tutorial for creating a CRUD API for a simple todo list application using NextJS. It demonstrates setting up a NextJS project, defining API routes, and documenting these APIs using modern technologies. You can use the application by visiting [here](https://todo-api-one-tan.vercel.app).
 
 ## Learning Objectives
 Through this project, you will learn:
