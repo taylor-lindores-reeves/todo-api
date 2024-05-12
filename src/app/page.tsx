@@ -1,22 +1,13 @@
-"use client";
+import { TodoList } from '@todo/components/todo-list';
+import { getTodos } from '@todo/lib/get-todos';
+import React from 'react';
 
-import { env } from '@todo/env.mjs';
-import { RedocStandalone, type ResolvedThemeInterface } from 'redoc';
-import type { AdvancedThemeObject } from 'redoc/typings/theme';
+export default async function TodoPage() {
+  const todos = await getTodos();
 
-export default function Home() {
   return (
-    <RedocStandalone
-      specUrl={`${env.NEXT_PUBLIC_API_URL}/openapi.json`}
-      options={{
-        nativeScrollbars: true,
-        theme,
-        hideLoading: true,
-        disableSearch: true,
-      }}
-    />
+    <main className="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
+      <TodoList todos={todos} />
+    </main>
   );
 }
-
-
-const theme = { colors: { primary: { main: '#000000' } } } satisfies AdvancedThemeObject<ResolvedThemeInterface>;
