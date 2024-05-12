@@ -31,7 +31,7 @@ export function TodoList({ todos }: { todos: Todo[]; }) {
   return (
     <div className="border bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-xl">
       <h1 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-gray-100">Todo List</h1>
-      <form {...form} onSubmit={form.handleSubmit(onSubmit)} className="mb-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mb-4">
         <Input
           {...form.register("name")}
           className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
