@@ -31,7 +31,8 @@
       "@todo/env": [
         "./src/env.mjs"
       ]
-    }
+    },
+    "target": "ESNext"
   },
   "include": [
     "next-env.d.ts",

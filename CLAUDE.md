@@ -8,7 +8,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Production start: `bun start`
 - Lint: `bun run lint`
 - Generate API: `bun run generate`
-- Validate API: `bun run validate`
 
 ## Code Style Guidelines
 - **Imports**: Use alias paths from tsconfig (e.g., `@todo/*`) and organize imports with Biome

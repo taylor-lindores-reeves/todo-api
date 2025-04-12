@@ -34,7 +34,7 @@ export function TodoList({ todos }: { todos: Todo[]; }) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="mb-4">
         <Input
           {...form.register("name")}
-          className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md py-2 px-4 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
           placeholder="Add a new task..."
           type="text"
         />
