@@ -8,7 +8,6 @@ const config = {
 	theme: {
 		extend: {},
 	},
-	darkMode: ["class"],
 } satisfies Config;
 
 export default config;
